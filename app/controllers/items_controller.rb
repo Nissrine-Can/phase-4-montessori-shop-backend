@@ -1,18 +1,14 @@
 class ItemsController < ApplicationController
-    
+before_action :find_item, only: [:show, :update, :destroy]   
+
     def index 
         items = Item.where(sold: false)
         render json: items, status: :ok
     end
 
     def show
-        item = Item.find_by(id: params[:id])
-        if item
-          render json: item, status: :ok
-        else 
-            render json:  "item not found", status: :not_found
-        end
-     end
+          render json: @item, status: :ok
+    end
 
      def create
         item = current_user.sold_items.create(item_params)
@@ -24,13 +20,11 @@ class ItemsController < ApplicationController
      end
 
      def update
-        item = Item.find(params[:id])
-        item.update!(item_params) 
+        @item.update!(item_params) 
      end
 
      def destroy
-        item = Item.find(params[:id])
-        item.destroy
+        @item.destroy
         head :no_content
      end
     
@@ -38,6 +32,10 @@ class ItemsController < ApplicationController
 
      def item_params
         params.permit(:name, :price, :description)
+     end
+
+     def find_item
+        @item = Item.find(params[:id])
      end
 
 end

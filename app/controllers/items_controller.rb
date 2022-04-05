@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
     
     def index 
-        items = Item.all
+        items = Item.where(sold: false)
         render json: items, status: :ok
     end
 

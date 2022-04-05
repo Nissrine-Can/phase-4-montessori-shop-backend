@@ -22,6 +22,11 @@ class ItemsController < ApplicationController
             render json: item.errors.full_messages, status: :unprocessable_entity
         end
      end
+
+     def update
+        item = Item.find(params[:id])
+        item.update!(item_params) 
+     end
     
      private
 

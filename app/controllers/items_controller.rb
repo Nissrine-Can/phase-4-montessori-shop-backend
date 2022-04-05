@@ -27,6 +27,12 @@ class ItemsController < ApplicationController
         item = Item.find(params[:id])
         item.update!(item_params) 
      end
+
+     def destroy
+        item = Item.find(params[:id])
+        item.destroy
+        head :no_content
+     end
     
      private
 

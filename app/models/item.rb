@@ -4,4 +4,7 @@ class Item < ApplicationRecord
 
   has_many :category_items
   has_many :categories, through: :category_items
+
+  validates :name, presence: true
+  validates :price, presence: true, format: { with: /\A\d+(?:\.\d{0,2})?\z/, message: "Must be a dollar amount" }, numericality: { greater_than: 0, less_than: 500 }
 end

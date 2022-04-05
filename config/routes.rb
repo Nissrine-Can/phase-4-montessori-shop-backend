@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #resources :category_items
   #resources :categories
-  resources :items, only: [:index, :show, :create]
+  resources :items, only: [:index, :show, :create, :update]
   resources :users, only: [:create, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

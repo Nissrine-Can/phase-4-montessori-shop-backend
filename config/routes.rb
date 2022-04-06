@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   #resources :category_items
   resources :categories, only: [:index, :show]
   resources :items
-  resources :users, only: [:create, :destroy]
+  resources :users, only: [:create, :destroy, :index]
 
   patch "/items/:id/sold", to: "items#sold"
 

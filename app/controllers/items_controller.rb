@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-before_action :find_item, only: [:show, :update, :destroy]   
+before_action :find_item, only: [:show, :update, :destroy, :sold]   
 
     def index 
         items = Item.where(sold: false)
@@ -26,6 +26,10 @@ before_action :find_item, only: [:show, :update, :destroy]
      def destroy
         @item.destroy
         head :no_content
+     end
+
+     def sold 
+        @item.update!(sold: true, buyer: current_user)
      end
     
      private

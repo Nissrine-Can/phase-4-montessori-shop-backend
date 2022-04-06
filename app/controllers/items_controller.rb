@@ -27,9 +27,15 @@ before_action :find_item, only: [:show, :update, :destroy, :sold]
         @item.destroy
         head :no_content
      end
-
+     
+     #buy now button frontend
      def sold 
         @item.update!(sold: true, buyer: current_user)
+        render json: @item, status: :ok
+     end
+
+     def purchased_items
+        render json: current_user.purchased_items, status: :ok
      end
     
      private

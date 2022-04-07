@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 
     include ActionController::Cookies 
-    
+
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
     end
 
     def current_user
-        User.find_by_username("fun_mom")
+        @current_user ||= User.find_by(id: session[:user_id])
     end
 
 end

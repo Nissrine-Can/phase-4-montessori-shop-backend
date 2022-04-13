@@ -10,7 +10,7 @@ two_year = Category.create(name: "2 Year")
 three_year = Category.create(name: "3 Year")
 
 #create items
-wooden_rattle = Item.create(name: "Wooden Rattle", description: "Wooden made from natural beech wood,natural Eco-friendly water paint,non-toxic,no paint,only sanding", price: 12.00, seller: fun_mom)
+wooden_rattle = Item.create(name: "Wooden Rattle", image:"https://montessorimethd-kbmmarketingltd.netdna-ssl.com/wp-content/uploads/2020/01/wooden-montessori-rattle.jpg", description: "Wooden made from natural beech wood,natural Eco-friendly water paint,non-toxic,no paint,only sanding", price: 12.00, seller: fun_mom)
 object_permanence_box = Item.create(name: "Object Permanence Box", description: "The Object Permanence Box with Tray contains a wooden box with tray and three wooden balls(red, yellow, blue).", price: 15.00, seller: fun_mom)
 climbing_triangle_with_ramp = Item.create(name: "Climbing Triangle With Ramp", description: "The woods used for Climbing triangle and Climbing Ramp are made of beech wood with containing the highest rigidity.", price: 250.00, seller: new_parent)
 musical_instruments = Item.create(name: "Musical Instruments", description: "Made with kid-friendly wood.", price: 18.00, seller: fun_mom)

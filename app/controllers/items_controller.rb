@@ -2,8 +2,15 @@ class ItemsController < ApplicationController
 before_action :find_item, only: [:show, :update, :destroy, :sold]   
 
     def index 
-        items = Item.where(sold: false)
+      items = Item.where(sold: false)
+        if params[:filter]
+         
+         items = Item.where(categories: params[:filter])
+        elsif params[:search]
+         items = Item.where('name LIKE ?', "%#{params[:search]}%")
+        else items = Item.all
         render json: items, status: :ok
+        end
     end
 
     def show

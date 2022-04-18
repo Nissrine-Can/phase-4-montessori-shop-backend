@@ -1,5 +1,5 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :price, :status
+  attributes :id, :image,  :name, :description, :price, :status
 
   belongs_to :seller
   has_many :categories

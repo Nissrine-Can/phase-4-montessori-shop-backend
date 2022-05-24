@@ -1,20 +1,26 @@
 class ItemsController < ApplicationController
 before_action :find_item, only: [:show, :update, :destroy, :sold]   
+skip_before_action :authenticate_user, only: [:index, :show]
 
     def index 
       items = Item.where(sold: false)
+
         if params[:filter]
          
          items = Item.where(categories: params[:filter])
         elsif params[:search]
-         items = Item.where('name LIKE ?', "%#{params[:search]}%")
-        else items = Item.all
-        render json: items, status: :ok
+        
+         items = Item.where('lower(name) LIKE ?', "%#{params[:search].downcase}%")
+        else 
+         items = Item.all
         end
+        render json: items, status: :ok
     end
+
 
     def show
           render json: @item, status: :ok
+
     end
 
      def create
@@ -27,6 +33,7 @@ before_action :find_item, only: [:show, :update, :destroy, :sold]
      end
 
      def update
+      
         @item.update!(item_params) 
      end
 
@@ -44,15 +51,23 @@ before_action :find_item, only: [:show, :update, :destroy, :sold]
      def purchased_items
         render json: current_user.purchased_items, status: :ok
      end
+
+     def listings
+      render json: current_user.sold_items, status: :ok
+     end
     
+     
+     
+
      private
 
      def item_params
-        params.permit(:name, :price, :description)
+        params.require(:item).permit(:id, :name, :price, :description, :categories, :image)
      end
 
      def find_item
         @item = Item.find(params[:id])
      end
 
+   
 end

@@ -1,6 +1,6 @@
 #create users
-new_parent = User.create(username: "new_parent", email: "newparent@123.com")
-fun_mom = User.create(username: "fun_mom", email: "funmom@123.com")
+new_parent = User.create(username: "new_parent", email: "newparent@123.com", password: "1234")
+fun_mom = User.create(username: "fun_mom", email: "funmom@123.com", password: "abcd")
 
 
 

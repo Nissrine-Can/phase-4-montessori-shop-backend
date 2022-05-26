@@ -7,12 +7,11 @@ skip_before_action :authenticate_user, only: [:index, :show]
 
         if params[:filter]
          
-         items = Item.where(categories: params[:filter])
+         items = items.where(categories: params[:filter])
         elsif params[:search]
         
-         items = Item.where('lower(name) LIKE ?', "%#{params[:search].downcase}%")
-        else 
-         items = Item.all
+         items = items.where('lower(name) LIKE ?', "%#{params[:search].downcase}%")
+   
         end
         render json: items, status: :ok
     end
